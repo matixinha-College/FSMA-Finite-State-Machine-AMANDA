@@ -1,21 +1,19 @@
 # FSMA Finite State Machine AMANDA
  Simulador de autômatos finitos determinísticos – AFD, que permita ao usuário testar o reconhecimento de diversas cadeias para qualquer AFD de entrada
 
-## Getting Started
+# Objetivo:
+⦁	Implementar um simulador de autômatos finitos determinísticos – AFD, que permita ao usuário testar o reconhecimento de diversas cadeias para qualquer AFD de entrada.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# Requisitos: 
+⦁	O programa deverá permitir que o usuário introduza qualquer AFD, ou seja, para montar o autômato A = (Q, Σ, δ, q0, F) o usuário deverá informar:
 
-## Folder Structure
+⦁	Os estados do AFD
+⦁	O alfabeto do AFD
+⦁	A função de transição
+⦁	O estado inicial
+⦁	Os estados de aceitação
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+⦁	Como forma de simplificação, é permitida a restrição do alfabeto a apenas 2 símbolos.
+⦁	Não é necessária a implementação de interface gráfica.
+⦁	O programa deverá rejeitar autômatos inválidos (Não determinísticos)
+⦁	Os componentes do autômato poderão ser lidos diretamente pelo console ou por um arquivo de entrada, ficando a critério do programador a implementação que achar mais conveniente.
