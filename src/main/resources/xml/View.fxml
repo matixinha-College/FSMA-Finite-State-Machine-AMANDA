@@ -46,7 +46,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.ViewController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -96,7 +96,7 @@
                                           <TextField fx:id="finalField" promptText="Ex.: q2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
-                                    <Button fx:id="generateTableButton" layoutX="172.0" layoutY="208.0" mnemonicParsing="false" text="Gerar tabela AFD" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="200.0" />
+                                    <Button fx:id="generateTableButton" layoutX="172.0" layoutY="208.0" mnemonicParsing="false" onAction="#GenerateTable" text="Gerar tabela AFD" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="200.0" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -132,7 +132,8 @@
                                           <TextField fx:id="finalString" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                        </children>
                                     </GridPane>
-                                    <Button fx:id="generateGraphButton" disable="true" layoutX="172.0" layoutY="189.0" mnemonicParsing="false" text="Gerar grafo (NI-alpha)" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="200.0" />
+                                    <Button fx:id="generateGraphButton" disable="true" layoutX="172.0" layoutY="189.0" mnemonicParsing="false" onAction="#GenerateGraph" text="Gerar grafo (NI-alpha)" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="200.0" />
+                                    <Button fx:id="EvaluateButton" layoutX="172.0" layoutY="189.0" mnemonicParsing="false" onAction="#Evaluate" text="Avaliar cadeia" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="155.0" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -150,7 +151,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TableView editable="true" fixedCellSize="25.0" layoutX="136.0" layoutY="65.0" prefHeight="313.0" prefWidth="395.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                                    <TableView fx:id="tableView" editable="true" fixedCellSize="30.0" layoutX="136.0" layoutY="65.0" prefHeight="313.0" prefWidth="395.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
                                       <columns>
                                         <TableColumn fx:id="stateColumn" prefWidth="75.0" text="Q (state)" />
                                         <TableColumn fx:id="alphabetColumn1" prefWidth="75.0" text="α 1" />
@@ -160,6 +161,7 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
+                                    <Button fx:id="saveTableButton" layoutX="172.0" layoutY="244.0" mnemonicParsing="false" onAction="#SaveTable" text="Salvar tabela" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="240.0" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
