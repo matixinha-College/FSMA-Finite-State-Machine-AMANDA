@@ -216,6 +216,7 @@ public class ViewController implements Initializable {
         if (automaton.isFinalState(currentState)) {
             result.setText("Accepted");
             finalString.setText(currentState);
+            generateGraphButton.setDisable(false);
         } else {
             result.setText("Rejected");
             finalString.setText("");
