@@ -1,0 +1,1 @@
+java --enable-preview --module-path "lib\javafx-sdk-21.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar .\FSMA-Finite-State-Machine-AMANDA.jar
