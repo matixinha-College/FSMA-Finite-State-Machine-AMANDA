@@ -166,7 +166,7 @@
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <Label alignment="TOP_CENTER" layoutX="178.0" layoutY="1.0" prefHeight="313.0" prefWidth="395.0" text="Descrição da cadeia:" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Label alignment="TOP_CENTER" layoutX="178.0" layoutY="1.0" prefHeight="313.0" prefWidth="395.0" text="Log:" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -180,6 +180,11 @@
                               </AnchorPane>
                           </items>
                         </SplitPane>
+                        <Label fx:id="errorLabel" alignment="BOTTOM_LEFT" layoutX="49.0" layoutY="285.0" prefHeight="25.0" prefWidth="793.0" text="Aguardando execução . . ." AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="285.0">
+                           <font>
+                              <Font name="Consolas" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
               </items>
