@@ -133,7 +133,7 @@
                                        </children>
                                     </GridPane>
                                     <Button fx:id="generateGraphButton" disable="true" layoutX="172.0" layoutY="189.0" mnemonicParsing="false" onAction="#GenerateGraph" text="Gerar grafo (NI-alpha)" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="200.0" />
-                                    <Button fx:id="EvaluateButton" layoutX="172.0" layoutY="189.0" mnemonicParsing="false" onAction="#Evaluate" text="Avaliar cadeia" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="155.0" />
+                                    <Button fx:id="EvaluateButton" disable="true" layoutX="172.0" layoutY="189.0" mnemonicParsing="false" onAction="#Evaluate" text="Avaliar cadeia" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="155.0" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -161,7 +161,7 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <Button fx:id="saveTableButton" layoutX="172.0" layoutY="244.0" mnemonicParsing="false" onAction="#SaveTable" text="Salvar tabela" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="240.0" />
+                                    <Button fx:id="saveTableButton" disable="true" layoutX="172.0" layoutY="244.0" mnemonicParsing="false" onAction="#SaveTable" text="Salvar tabela" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="240.0" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

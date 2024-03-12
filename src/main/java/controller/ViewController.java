@@ -90,7 +90,7 @@ public class ViewController implements Initializable {
     @FXML
     void GenerateTable(ActionEvent event) throws Exception {
 
-        // reset the automaton values
+        // add starting values to the automaton
         automaton.getAlphabet().clear();
         automaton.getStates().clear();
         automaton.getFinalStates().clear();
@@ -100,7 +100,6 @@ public class ViewController implements Initializable {
         errorMessage.clear();
 
         // remove all items from the list
-        tableView.getItems().clear();
 
         String[] alphabet = alphabetField.getText().split(",");
         if (alphabet.length != 2) {
@@ -169,47 +168,50 @@ public class ViewController implements Initializable {
             }
             errorLabel.setStyle("-fx-text-fill: red;");
             errorLabel.setText("Tabela não gerada, corrija os erros descritos no log!\n");
-            return;
+            error = 0;
 
+        } else {
+            loggerArea.clear();
+            alphabetColumn1.setText(alphabet[0]);
+            alphabetColumn2.setText(alphabet[1]);
+
+            for (String state : states) {
+                Automaton.AutomatonTransition transition = automaton.new AutomatonTransition();
+                transition.setCurrentState(state);
+                transition.setSymbolState(new HashMap<String, String>());
+                transition.getSymbolState().put(alphabet[0], "");
+                transition.getSymbolState().put(alphabet[1], "");
+                automaton.getTransitions().add(transition);
+            }
+
+            stateColumn.setCellValueFactory(new PropertyValueFactory<>("currentState"));
+
+            alphabetColumn1.setCellValueFactory(cellData -> {
+                AutomatonTransition transition = cellData.getValue();
+                return new SimpleStringProperty(transition.getSymbolState().get(alphabetColumn1.getText()));
+            });
+
+            alphabetColumn2.setCellValueFactory(cellData -> {
+                AutomatonTransition transition = cellData.getValue();
+                return new SimpleStringProperty(transition.getSymbolState().get(alphabetColumn2.getText()));
+            });
+
+            ObservableList<AutomatonTransition> list = FXCollections.observableArrayList(automaton.getTransitions());
+
+            // make observable list
+            tableView.setItems(list);
+
+            tableView.setEditable(true);
+            EvaluateButton.setDisable(true);
+            saveTableButton.setDisable(false);
+            generateGraphButton.setDisable(true);
+
+            // show automaton
+
+            errorLabel.setStyle("-fx-text-fill: green;");
+            errorLabel.setText("Tabela gerada com sucesso!\n");
         }
-        alphabetColumn1.setText(alphabet[0]);
-        alphabetColumn2.setText(alphabet[1]);
-
-        for (String state : states) {
-            Automaton.AutomatonTransition transition = automaton.new AutomatonTransition();
-            transition.setCurrentState(state);
-            transition.setSymbolState(new HashMap<String, String>());
-            transition.getSymbolState().put(alphabet[0], "");
-            transition.getSymbolState().put(alphabet[1], "");
-            automaton.getTransitions().add(transition);
-        }
-
-        stateColumn.setCellValueFactory(new PropertyValueFactory<>("currentState"));
-
-        alphabetColumn1.setCellValueFactory(cellData -> {
-            AutomatonTransition transition = cellData.getValue();
-            return new SimpleStringProperty(transition.getSymbolState().get(alphabetColumn1.getText()));
-        });
-
-        alphabetColumn2.setCellValueFactory(cellData -> {
-            AutomatonTransition transition = cellData.getValue();
-            return new SimpleStringProperty(transition.getSymbolState().get(alphabetColumn2.getText()));
-        });
-
-        ObservableList<AutomatonTransition> list = FXCollections.observableArrayList(automaton.getTransitions());
-
-        
-
-        // make observable list
-        tableView.setItems(list);
-
-        tableView.setEditable(true);
-
-        // show automaton
         automaton.showAutomaton();
-        errorLabel.setStyle("-fx-text-fill: green;");
-        errorLabel.setText("Tabela gerada com sucesso!\n");
-
     }
 
     @Override
@@ -287,13 +289,15 @@ public class ViewController implements Initializable {
             }
             errorLabel.setStyle("-fx-text-fill: red;");
             errorLabel.setText("Tabela não pode ser salva, corrija os erros descritos no log!\n");
-            return;
-        }
+        } else {
 
+            tableView.setEditable(false);
+            EvaluateButton.setDisable(false);
+            generateGraphButton.setDisable(true);
+            errorLabel.setStyle("-fx-text-fill: green;");
+            errorLabel.setText("Tabela salva com sucesso!\n");
+        }
         automaton.showAutomaton();
-        tableView.setEditable(false);
-        errorLabel.setStyle("-fx-text-fill: green;");
-        errorLabel.setText("Tabela salva com sucesso!\n");
     }
 
     @FXML
@@ -316,13 +320,17 @@ public class ViewController implements Initializable {
             currentState = nextState;
         }
 
-        if (automaton.isFinalState(currentState)) {
+        if (automaton.isFinalState(currentState) && !input.isEmpty()) {
             result.setText("Accepted");
             finalString.setText(currentState);
             generateGraphButton.setDisable(false);
+            errorLabel.setStyle("-fx-text-fill: green;");
+            errorLabel.setText("A cadeia de entrada foi aceita pelo autômato!\n");
         } else {
             result.setText("Rejected");
             finalString.setText("");
+            errorLabel.setStyle("-fx-text-fill: red;");
+            errorLabel.setText("A cadeia de entrada foi rejeitada pelo autômato!\n");
         }
 
         automaton.TransitionDOT();
@@ -361,7 +369,7 @@ public class ViewController implements Initializable {
         try {
             String dotExePath = "lib/Graphviz/bin/dot.exe";
             String dotPath = "src/main/resources/dot/automaton.dot";
-            String imgPath = "src/main/resources/img/automaton.png";
+            String imgPath = "automaton.png";
             String dotCommand = dotExePath + " -Tpng " + dotPath + " -o " + imgPath;
             Runtime.getRuntime().exec(dotCommand);
 
